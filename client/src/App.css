@@ -1,0 +1,82 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+.container{
+  background: #000;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+}
+
+img{
+  width: 30%;
+}
+
+.wrapper{
+  background-color: #fff;
+  width: 600px;
+  height: 400px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  cursor: default;
+}
+
+h1{
+  font-size: 40px;
+  font-weight: 550;
+  color:#00bfff;
+  margin:40px 0;
+}
+
+button{
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #00bfff;
+  border: 1px solid #00bfff;
+  color:#fff;
+  font-size:large;
+  margin: 30px 0;
+  cursor: pointer;
+  /* transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;  */
+  /* transition: all 0.3s; */
+  transition: transform 0.3s, background-color 0.3s,color 0.3s;
+}
+
+button:hover{
+  transform: translateY(-5px);
+  background-color: #fff;
+  color:#00bfff;
+  box-shadow: 0 0 10px #00bfff;
+}
+
+@keyframes slide {
+  from{
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  to{
+    transform: translateX(40px);
+    opacity: 0;
+  }
+}
+p{
+  animation-name: slide;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction:normal;
+  animation-fill-mode: both;
+}
+
+a{
+  font-weight: 500;
+  cursor: pointer;
+  color:#f00;
+}
