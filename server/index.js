@@ -8,13 +8,8 @@ const app = express();
 const PORT = 8000;
 
 // Middleware
-const corsOptions = {
-    origin: 'http://localhost:3000', // Frontend's URL
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true, // Allow cookies if needed
-};
 
-app.use(cors(corsOptions)); // Enable CORS
+app.use(cors()); // Enable CORS
 app.use(express.json()); // Parse JSON data
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded data
 
