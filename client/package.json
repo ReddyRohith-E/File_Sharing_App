@@ -9,7 +9,7 @@
     "axios": "^1.9.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^0.0.0",
     "web-vitals": "^5.0.0"
   },
   "scripts": {
@@ -37,7 +37,7 @@
     ]
   },
   "devDependencies": {
-    "nodemon": "^3.1.10",
-    "@babel/plugin-proposal-private-property-in-object":"^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "nodemon": "^3.1.10"
   }
 }
