@@ -2,11 +2,14 @@ import express from 'express';
 import router from './routes/routes.js';
 import cors from 'cors';
 import DBConnection from './database/db.js';
+import dotenv from 'dotenv';
 
+// Load environment variables
+dotenv.config();
 
 const app = express();
-const PORT = 8000;
-const HOST = '0.0.0.0'; // Listen on all network interfaces
+const PORT = process.env.PORT || 8000;
+const HOST = process.env.HOST || '0.0.0.0'; // Listen on all network interfaces
 
 // Middleware
 

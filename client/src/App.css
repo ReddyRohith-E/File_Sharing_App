@@ -1,82 +1,560 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
-.container{
-  background: #000;
-  height: 100vh;
-  overflow: hidden;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+.container {
+  position: relative;
+  background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+  min-height: 100vh;
+  padding: 20px;
   display: flex;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
-img{
-  width: 30%;
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 191, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 128, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(0, 191, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
 }
 
-.wrapper{
-  background-color: #fff;
-  width: 600px;
-  height: 400px;
+.main-content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1;
+}
+
+.wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  min-width: 700px;
+  min-height: 600px;
   margin: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
   cursor: default;
+  border-radius: 25px;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  padding: 40px 35px;
+  position: relative;
+  overflow: hidden;
 }
 
-h1{
-  font-size: 40px;
-  font-weight: 550;
-  color:#00bfff;
-  margin:40px 0;
+.wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    #00bfff 0%, 
+    #0080ff 25%, 
+    #66bbff 50%, 
+    #0080ff 75%, 
+    #00bfff 100%);
+  background-size: 400% 100%;
+  animation: shimmerTop 4s ease-in-out infinite;
+  border-radius: 25px 25px 0 0;
 }
 
-button{
-  width: 150px;
-  height: 40px;
-  border-radius: 5px;
-  background-color: #00bfff;
-  border: 1px solid #00bfff;
-  color:#fff;
-  font-size:large;
-  margin: 30px 0;
-  cursor: pointer;
-  /* transition-property: transform;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;  */
-  /* transition: all 0.3s; */
-  transition: transform 0.3s, background-color 0.3s,color 0.3s;
+.wrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.05) 0%, transparent 70%);
+  animation: centerPulse 8s ease-in-out infinite;
+  pointer-events: none;
 }
 
-button:hover{
-  transform: translateY(-5px);
-  background-color: #fff;
-  color:#00bfff;
-  box-shadow: 0 0 10px #00bfff;
+@keyframes shimmerTop {
+  0%, 100% { background-position: 0% 0; }
+  50% { background-position: 100% 0; }
 }
 
-@keyframes slide {
-  from{
-    transform: translateX(0px);
-    opacity: 1;
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+@keyframes overlayPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes wrapperGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes centerPulse {
+  0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes buttonGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes uploadingGradient {
+  0%, 100% { background-position: 0% 50%; }
+  33% { background-position: 100% 0%; }
+  66% { background-position: 100% 100%; }
+}
+
+@keyframes uploadShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
   }
-  to{
-    transform: translateX(40px);
-    opacity: 0;
+  
+  .wrapper {
+    min-width: 95%;
+    min-height: 500px;
+    padding: 30px 20px;
+    border-radius: 20px;
   }
 }
-p{
-  animation-name: slide;
-  animation-duration: 3s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction:normal;
-  animation-fill-mode: both;
+
+@media (max-width: 480px) {
+  .wrapper {
+    min-width: 100%;
+    padding: 25px 15px;
+    border-radius: 15px;
+  }
 }
 
-a{
+/* Global animations */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus {
+  outline: 2px solid #00bfff;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Network Status Styles */
+.network-status {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+  padding: 10px 15px;
+  background: rgba(0, 191, 255, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 500;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.connected .status-dot {
+  background-color: #4caf50;
+}
+
+.status-indicator.error .status-dot {
+  background-color: #f44336;
+}
+
+.status-indicator.checking .status-dot {
+  background-color: #ff9800;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.info-toggle {
+  background: rgba(0, 191, 255, 0.2);
+  border: 1px solid #00bfff;
+  color: #00bfff;
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 12px;
   cursor: pointer;
-  color:#f00;
+  transition: all 0.3s;
+}
+
+.info-toggle:hover {
+  background: #00bfff;
+  color: white;
+}
+
+/* Network Info Panel */
+.network-info {
+  background: rgba(240, 248, 255, 0.9);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0;
+  width: 100%;
+  max-width: 500px;
+}
+
+.network-info h3 {
+  color: #00bfff;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.info-item strong {
+  min-width: 100px;
+  color: #333;
+}
+
+.info-item span {
+  flex: 1;
+  font-family: monospace;
+  background: rgba(0, 191, 255, 0.1);
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.info-item button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  min-width: auto;
+}
+
+.network-instructions {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+}
+
+.network-instructions p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+  animation: none;
+}
+
+.network-instructions strong {
+  color: #4caf50;
+}
+
+/* Upload Button */
+.upload-button {
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, 
+    #00bfff 0%, 
+    #0080ff 50%, 
+    #66bbff 100%);
+  background-size: 200% 200%;
+  animation: buttonGradient 6s ease-in-out infinite;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 20px 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 6px 20px rgba(0, 191, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent);
+  transition: left 0.6s;
+}
+
+.upload-button:hover:not(:disabled) {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 191, 255, 0.6);
+  animation: buttonGradient 2s ease-in-out infinite;
+}
+
+.upload-button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.upload-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 191, 255, 0.2);
+  animation: none;
+}
+
+.upload-button.uploading {
+  background: linear-gradient(135deg, 
+    #ff9800 0%, 
+    #f57c00 50%, 
+    #ffb74d 100%);
+  background-size: 200% 200%;
+  animation: uploadingGradient 3s ease-in-out infinite;
+  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+}
+
+.upload-button.uploading::before {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent);
+  animation: uploadShimmer 2s infinite;
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 300px;
+  height: 6px;
+  background: rgba(0, 191, 255, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00bfff, #0080ff);
+  transition: width 0.3s ease;
+  border-radius: 3px;
+}
+
+/* Result Section */
+.result-section {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 15px;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  text-align: center;
+  max-width: 500px;
+}
+
+.result-section h3 {
+  color: #4caf50;
+  margin-bottom: 15px;
+}
+
+.download-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.download-link a {
+  color: #00bfff;
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-all;
+  flex: 1;
+  min-width: 200px;
+}
+
+.download-link a:hover {
+  text-decoration: underline;
+}
+
+.download-link button {
+  width: auto;
+  height: 35px;
+  padding: 0 15px;
+  font-size: 12px;
+  margin: 0;
+}
+
+.share-instruction {
+  color: #666;
+  font-style: italic;
+  margin-top: 15px;
+  animation: none;
+}
+
+/* Error Section */
+.error-section {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(244, 67, 54, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  text-align: center;
+}
+
+.error-section p {
+  color: #f44336;
+  margin-bottom: 10px;
+  animation: none;
+}
+
+.error-section button {
+  background: #f44336;
+  border: 1px solid #f44336;
+  width: auto;
+  padding: 0 20px;
+  margin: 0;
+}
+
+.error-section button:hover {
+  background: white;
+  color: #f44336;
+}
+
+/* Copy Message */
+.copy-message {
+  background: #4caf50;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 12px;
+  margin: 10px 0;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* General Button Styles */
+button {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Animated Text */
+p {
+  font-size: 16px;
+  color: #666;
+  margin: 10px 0;
+}
+
+.wrapper > p:first-of-type {
+  animation: fadeIn 2s ease-in-out infinite alternate;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  img {
+    width: 50%;
+    margin: 0 auto;
+  }
+  
+  .wrapper {
+    min-width: 90%;
+    margin-top: 20px;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+  
+  .network-info {
+    max-width: 100%;
+  }
+  
+  .download-link {
+    flex-direction: column;
+  }
+  
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

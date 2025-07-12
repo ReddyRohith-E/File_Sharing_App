@@ -1,0 +1,107 @@
+/* Logo Component Styles */
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.app-logo {
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 6px 12px rgba(0, 191, 255, 0.4));
+  animation: logoFloat 6s ease-in-out infinite;
+}
+
+.app-logo:hover {
+  transform: scale(1.08) rotate(3deg);
+  filter: drop-shadow(0 8px 20px rgba(0, 191, 255, 0.6));
+  animation: logoSpin 2s ease-in-out;
+}
+
+.logo-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, 
+    #00bfff 0%, 
+    #66bbff 25%, 
+    #0080ff 50%, 
+    #66bbff 75%, 
+    #00bfff 100%);
+  background-size: 300% 300%;
+  animation: logoTextGlow 8s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  line-height: 1;
+}
+
+.logo-subtitle {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo-wrapper {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .logo-title {
+    align-items: center;
+  }
+  
+  .logo-text {
+    font-size: 20px;
+  }
+  
+  .logo-subtitle {
+    font-size: 10px;
+  }
+}
+
+/* Animation for logo appearance */
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo-wrapper {
+  animation: logoFadeIn 0.8s ease-out;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes logoSpin {
+  0% { transform: scale(1.08) rotate(3deg); }
+  50% { transform: scale(1.12) rotate(-2deg); }
+  100% { transform: scale(1.08) rotate(3deg); }
+}
+
+@keyframes logoTextGlow {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}

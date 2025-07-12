@@ -1,0 +1,180 @@
+/* NetworkInfo Component Styles */
+.network-info {
+  background: linear-gradient(135deg, 
+    rgba(240, 248, 255, 0.95) 0%,
+    rgba(230, 245, 255, 0.9) 50%,
+    rgba(240, 248, 255, 0.95) 100%);
+  background-size: 200% 200%;
+  animation: infoGlow 10s ease-in-out infinite;
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  border-radius: 12px;
+  padding: 22px;
+  margin: 15px 0;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.network-info::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(0, 191, 255, 0.3),
+    rgba(100, 200, 255, 0.2),
+    rgba(0, 150, 255, 0.3),
+    rgba(0, 191, 255, 0.3));
+  background-size: 300% 300%;
+  animation: infoBorderGlow 6s linear infinite;
+  border-radius: 12px;
+  z-index: -1;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes infoGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes infoBorderGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes itemGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.network-info h3 {
+  color: #00bfff;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.info-item strong {
+  min-width: 100px;
+  color: #333;
+  font-weight: 500;
+}
+
+.info-item span {
+  flex: 1;
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(135deg, 
+    rgba(0, 191, 255, 0.12) 0%,
+    rgba(100, 200, 255, 0.08) 50%,
+    rgba(0, 191, 255, 0.1) 100%);
+  background-size: 200% 200%;
+  animation: itemGlow 12s ease-in-out infinite;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  word-break: break-all;
+  border: 1px solid rgba(0, 191, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+.info-item span:hover {
+  background: linear-gradient(135deg, 
+    rgba(0, 191, 255, 0.2) 0%,
+    rgba(100, 200, 255, 0.15) 50%,
+    rgba(0, 191, 255, 0.18) 100%);
+  transform: scale(1.02);
+}
+
+.info-item button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  min-width: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  background: linear-gradient(135deg, 
+    rgba(0, 191, 255, 0.15) 0%,
+    rgba(100, 200, 255, 0.1) 100%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-item button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent);
+  transition: left 0.3s;
+}
+
+.info-item button:hover {
+  background: linear-gradient(135deg, #00bfff 0%, #66bbff 100%);
+  transform: scale(1.15);
+  box-shadow: 0 4px 15px rgba(0, 191, 255, 0.4);
+}
+
+.info-item button:hover::before {
+  left: 100%;
+}
+
+.network-instructions {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+}
+
+.network-instructions p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+  animation: none;
+}
+
+.network-instructions ol {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.network-instructions li {
+  margin: 5px 0;
+  color: #555;
+  font-size: 13px;
+}
+
+.network-instructions strong {
+  color: #4caf50;
+  font-weight: 600;
+}

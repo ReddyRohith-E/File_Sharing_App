@@ -1,0 +1,85 @@
+/* Header Component Styles */
+.app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.header-content {
+  margin-top: 20px;
+}
+
+.header-content h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #00bfff;
+  margin: 0 0 15px 0;
+  text-shadow: 0 2px 4px rgba(0, 191, 255, 0.2);
+  background: linear-gradient(135deg, 
+    #00bfff 0%, 
+    #66bbff 25%, 
+    #0080ff 50%, 
+    #66bbff 75%, 
+    #00bfff 100%);
+  background-size: 300% 300%;
+  animation: textGradient 6s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+  animation: fadeInPulse 2s ease-in-out infinite alternate;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@keyframes fadeInPulse {
+  from { 
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes textGradient {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-header {
+    margin-bottom: 25px;
+  }
+  
+  .header-content h1 {
+    font-size: 26px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content h1 {
+    font-size: 22px;
+  }
+  
+  .subtitle {
+    font-size: 13px;
+  }
+}

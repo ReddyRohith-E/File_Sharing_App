@@ -1,0 +1,377 @@
+/* FileResult Component Styles */
+.result-section {
+  margin-top: 30px;
+  padding: 25px;
+  background: linear-gradient(135deg, 
+    rgba(76, 175, 80, 0.15) 0%,
+    rgba(139, 195, 74, 0.12) 25%,
+    rgba(102, 187, 106, 0.1) 50%,
+    rgba(76, 175, 80, 0.08) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease-in-out infinite, slideUp 0.5s ease-out;
+  border-radius: 15px;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  text-align: center;
+  max-width: 700px;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-section::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(76, 175, 80, 0.3),
+    rgba(139, 195, 74, 0.3),
+    rgba(102, 187, 106, 0.3),
+    rgba(76, 175, 80, 0.3));
+  background-size: 300% 300%;
+  animation: borderGlow 3s linear infinite;
+  border-radius: 15px;
+  z-index: -1;
+}
+
+.error-section {
+  margin-top: 30px;
+  padding: 25px;
+  background: linear-gradient(135deg, 
+    rgba(244, 67, 54, 0.15) 0%,
+    rgba(229, 115, 115, 0.12) 25%,
+    rgba(239, 83, 80, 0.1) 50%,
+    rgba(244, 67, 54, 0.08) 100%);
+  background-size: 200% 200%;
+  animation: gradientShiftError 4s ease-in-out infinite, slideUp 0.5s ease-out;
+  border-radius: 15px;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  text-align: center;
+  max-width: 700px;
+  position: relative;
+  overflow: hidden;
+}
+
+.error-section::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(244, 67, 54, 0.3),
+    rgba(229, 115, 115, 0.3),
+    rgba(239, 83, 80, 0.3),
+    rgba(244, 67, 54, 0.3));
+  background-size: 300% 300%;
+  animation: borderGlowError 3s linear infinite;
+  border-radius: 15px;
+  z-index: -1;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes gradientShiftError {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes borderGlowError {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes subtleShimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes linkShimmer {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+@keyframes urlGlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes urlShine {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+.success-icon,
+.error-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  display: block;
+  animation: bounce 0.6s ease-out;
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40%, 43% {
+    transform: translateY(-10px);
+  }
+  70% {
+    transform: translateY(-5px);
+  }
+  90% {
+    transform: translateY(-2px);
+  }
+}
+
+.result-section h3 {
+  color: #4caf50;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.error-section h3 {
+  color: #f44336;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.download-link {
+  margin: 20px 0;
+  padding: 15px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(240, 248, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.9) 100%);
+  background-size: 200% 200%;
+  animation: subtleShimmer 6s ease-in-out infinite;
+  border-radius: 10px;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.download-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(76, 175, 80, 0.1), 
+    transparent);
+  animation: linkShimmer 8s infinite;
+}
+
+.link-container {
+  margin-bottom: 15px;
+}
+
+.download-url {
+  color: #ff6b6b;
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-all;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  display: block;
+  padding: 12px;
+  background: linear-gradient(135deg, 
+    rgba(255, 107, 107, 0.12) 0%,
+    rgba(255, 154, 154, 0.08) 50%,
+    rgba(255, 107, 107, 0.1) 100%);
+  background-size: 200% 200%;
+  animation: urlGlow 5s ease-in-out infinite;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 107, 107, 0.25);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.download-url::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent);
+  animation: urlShine 7s infinite;
+}
+
+.download-url:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 107, 107, 0.25) 0%,
+    rgba(255, 154, 154, 0.2) 50%,
+    rgba(255, 107, 107, 0.22) 100%);
+  text-decoration: underline;
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+}
+
+.copy-button {
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.4s ease;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.copy-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.5s;
+}
+
+.copy-button:hover {
+  background: linear-gradient(135deg, #45a049 0%, #5cb85c 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+}
+
+.copy-button:hover::before {
+  left: 100%;
+}
+
+.retry-button {
+  background: linear-gradient(135deg, #f44336 0%, #ef5350 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.4s ease;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.retry-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.5s;
+}
+
+.retry-button:hover {
+  background: linear-gradient(135deg, #d32f2f 0%, #e57373 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(244, 67, 54, 0.4);
+}
+
+.retry-button:hover::before {
+  left: 100%;
+}
+
+.share-instruction {
+  color: #666;
+  font-style: italic;
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.error-section p {
+  color: #f44336;
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+}

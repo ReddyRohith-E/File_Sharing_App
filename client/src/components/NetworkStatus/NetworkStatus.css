@@ -1,0 +1,128 @@
+/* NetworkStatus Component Styles */
+.network-status {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, 
+    rgba(0, 191, 255, 0.12) 0%,
+    rgba(100, 200, 255, 0.08) 50%,
+    rgba(0, 191, 255, 0.1) 100%);
+  background-size: 200% 200%;
+  animation: statusGlow 8s ease-in-out infinite;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.network-status::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent);
+  animation: statusShimmer 10s infinite;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.status-indicator.connected .status-dot {
+  background: radial-gradient(circle, #4caf50 0%, #66bb6a 100%);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+}
+
+.status-indicator.error .status-dot {
+  background: radial-gradient(circle, #f44336 0%, #ef5350 100%);
+  box-shadow: 0 0 15px rgba(244, 67, 54, 0.6);
+}
+
+.status-indicator.checking .status-dot {
+  background: radial-gradient(circle, #ff9800 0%, #ffb74d 100%);
+  box-shadow: 0 0 15px rgba(255, 152, 0, 0.6);
+}
+
+@keyframes pulse {
+  0% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.6; 
+    transform: scale(1.1);
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+}
+
+@keyframes statusGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes statusShimmer {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+.info-toggle {
+  background: linear-gradient(135deg, 
+    rgba(0, 191, 255, 0.2) 0%, 
+    rgba(100, 200, 255, 0.15) 100%);
+  border: 1px solid #00bfff;
+  color: #00bfff;
+  padding: 6px 15px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.4s;
+}
+
+.info-toggle:hover {
+  background: linear-gradient(135deg, #00bfff 0%, #66bbff 100%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 191, 255, 0.4);
+}
+
+.info-toggle:hover::before {
+  left: 100%;
+}

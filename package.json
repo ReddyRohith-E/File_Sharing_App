@@ -1,5 +1,31 @@
 {
+  "name": "file-sharing-network-app",
+  "version": "1.0.0",
+  "description": "A network-enabled file sharing application built with React and Express",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm start",
+    "client": "cd client && npm start",
+    "client-network": "cd client && npm run start-network",
+    "network-config": "cd client && npm run network-config",
+    "dev": "concurrently \"npm run server\" \"npm run client-network\"",
+    "build": "cd client && npm run build"
+  },
+  "keywords": [
+    "file-sharing",
+    "network",
+    "react",
+    "express",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
