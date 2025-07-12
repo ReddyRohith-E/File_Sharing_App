@@ -1,4 +1,4 @@
-# 📂 File Sharing Network App
+# 🔗 File Sync | Connect & Share 🗃️
 
 A modern, network-enabled file sharing application built with React and Express.js that allows users to upload and share files seamlessly across local networks and the internet.
 
