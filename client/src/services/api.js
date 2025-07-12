@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000';
+// Use environment variable or default to localhost
+// For network access, set REACT_APP_API_URL to your server's IP address
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
+console.log('API URL:', API_URL);
 
 export const uploadFile = async (data) => {
     try {

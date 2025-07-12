@@ -6,15 +6,25 @@ import DBConnection from './database/db.js';
 
 const app = express();
 const PORT = 8000;
+const HOST = '0.0.0.0'; // Listen on all network interfaces
 
 // Middleware
 
-app.use(cors()); // Enable CORS
+app.use(cors({
+    origin: '*', // Allow all origins for network access
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+})); // Enable CORS for network access
 app.use(express.json()); // Parse JSON data
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded data
 
 // Database Connection
 DBConnection();
+
+// Serve static files from uploads directory
+app.use('/uploads', express.static('uploads'));
+app.use('/files', express.static('uploads')); // Alternative endpoint for file access
 
 // Routes
 app.use('/', router);
@@ -31,4 +41,8 @@ app.use((err, req, res, next) => {
 });
 
 // Start Server
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+app.listen(PORT, HOST, () => {
+    console.log(`Server is running on http://${HOST}:${PORT}`);
+    console.log(`Access from network: http://<YOUR_IP_ADDRESS>:${PORT}`);
+    console.log('To find your IP address, run: ipconfig (Windows) or ifconfig (Mac/Linux)');
+});

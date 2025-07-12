@@ -1,5 +1,63 @@
+# Node modules
 /node_modules
-
 client/node_modules
 server/node_modules
+
+# Build output
+/dist
+/build
+client/dist
+client/build
+server/dist
+server/build
+
+# Logs
+*.log
+logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Uploads and generated files
 server/uploads
+uploads/
+
+# Coverage reports
+coverage/
+client/coverage/
+server/coverage/
+
+# Misc
+*.tgz
+*.gz
+*.zip
+*.bak
+*.tmp
+
+# Dependency directories
+bower_components/
+jspm_packages/
+
+# TypeScript
+*.tsbuildinfo
+
+# Test output
+junit.xml
+test-results/
