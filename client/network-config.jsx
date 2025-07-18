@@ -24,6 +24,39 @@ function getNetworkInterfaces() {
     return addresses;
 }
 
+function updateEnvFile(silent = false) {
+    const addresses = getNetworkInterfaces();
+    
+    if (addresses.length === 0) {
+        if (!silent) console.log('❌ No network interfaces found. Using localhost.');
+        return false;
+    }
+    
+    const primaryIP = addresses[0].address;
+    const envContent = `# Auto-generated network configuration
+# Generated on ${new Date().toISOString()}
+REACT_APP_API_URL=http://${primaryIP}:8000
+HOST=0.0.0.0
+
+# Alternative IP addresses found:
+${addresses.slice(1).map(addr => `# REACT_APP_API_URL=http://${addr.address}:8000`).join('\n')}
+`;
+    
+    const clientEnvPath = path.join(__dirname, '.env');
+    try {
+        fs.writeFileSync(clientEnvPath, envContent);
+        if (!silent) {
+            console.log(`✅ Updated .env file with current IP: ${primaryIP}`);
+        }
+        return primaryIP;
+    } catch (error) {
+        if (!silent) {
+            console.log(`⚠️  Could not update .env file: ${error.message}`);
+        }
+        return false;
+    }
+}
+
 function generateNetworkConfig() {
     const addresses = getNetworkInterfaces();
     
@@ -41,29 +74,14 @@ function generateNetworkConfig() {
     
     console.log('\n📋 Configuration Instructions:');
     console.log('1. Choose your primary network interface from above');
-    console.log('2. Create a .env file in the client folder with:');
+    console.log('2. The .env file will be auto-updated with:');
     
     if (addresses.length > 0) {
         const primaryIP = addresses[0].address;
         console.log(`   REACT_APP_API_URL=http://${primaryIP}:8000`);
         
         // Auto-generate .env file
-        const envContent = `# Auto-generated network configuration
-# Generated on ${new Date().toISOString()}
-REACT_APP_API_URL=http://${primaryIP}:8000
-
-# Alternative IP addresses found:
-${addresses.slice(1).map(addr => `# REACT_APP_API_URL=http://${addr.address}:8000`).join('\n')}
-`;
-        
-        const clientEnvPath = path.join(__dirname, '.env');
-        try {
-            fs.writeFileSync(clientEnvPath, envContent);
-            console.log(`\n✅ Auto-generated .env file with IP: ${primaryIP}`);
-        } catch (error) {
-            console.log(`\n⚠️  Could not auto-generate .env file: ${error.message}`);
-            console.log('Please create it manually.');
-        }
+        updateEnvFile();
     }
     
     console.log('\n🚀 To start network sharing:');
@@ -79,10 +97,11 @@ ${addresses.slice(1).map(addr => `# REACT_APP_API_URL=http://${addr.address}:800
     console.log('- Make sure Windows Firewall allows Node.js/npm');
     console.log('- All devices must be on the same network (WiFi/LAN)');
     console.log('- The server must be running before starting the client');
+    console.log('- IP address is automatically updated on each run');
 }
 
 if (require.main === module) {
     generateNetworkConfig();
 }
 
-module.exports = { getNetworkInterfaces, generateNetworkConfig };
+module.exports = { getNetworkInterfaces, generateNetworkConfig, updateEnvFile };

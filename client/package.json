@@ -19,7 +19,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "network-config": "node network-config.jsx",
-    "start-network": "set HOST=0.0.0.0 && npm start"
+    "update-ip": "node -e \"const { updateEnvFile } = require('./network-config.jsx'); updateEnvFile(true);\"",
+    "start-network": "npm run update-ip && npm start"
   },
   "eslintConfig": {
     "extends": [

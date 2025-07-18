@@ -10,7 +10,8 @@
     "client": "cd client && npm start",
     "client-network": "cd client && npm run start-network",
     "network-config": "cd client && npm run network-config",
-    "dev": "concurrently \"npm run server\" \"npm run client-network\"",
+    "update-network": "cd client && npm run update-ip",
+    "dev": "npm run update-network && concurrently \"npm run server\" \"npm run client-network\"",
     "build": "cd client && npm run build"
   },
   "keywords": [
@@ -26,6 +27,6 @@
     "nodemon": "^3.1.10"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^9.2.0"
   }
 }
