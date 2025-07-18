@@ -69,3 +69,28 @@ export const getNetworkInfo = () => {
         isNetworkAccess: hostname !== 'localhost' && hostname !== '127.0.0.1'
     };
 };
+
+export const getSupportedFileTypes = async () => {
+    try {
+        const response = await axios.get(`${API_URL}/supported-files`);
+        return { status: 'success', data: response.data };
+    } catch (error) {
+        console.error('Error fetching supported file types:', error.message);
+        // Return default supported types if server is unavailable
+        return {
+            status: 'fallback',
+            data: {
+                allowedTypes: [
+                    'image/jpeg',
+                    'image/png',
+                    'application/pdf',
+                    'text/plain',
+                    'application/msword',
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                ],
+                maxFileSize: 524288000, // 500MB
+                acceptAttribute: '.jpg,.jpeg,.png,.pdf,.txt,.doc,.docx'
+            }
+        };
+    }
+};

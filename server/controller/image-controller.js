@@ -77,3 +77,41 @@ export const getFilesList = async (request, response) => {
         response.status(500).json({ error: error.message });
     }
 };
+
+export const getSupportedFileTypes = async (request, response) => {
+    try {
+        const allowedTypes = process.env.ALLOWED_FILE_TYPES 
+            ? process.env.ALLOWED_FILE_TYPES.split(',')
+            : ['image/jpeg', 'image/png', 'application/pdf'];
+
+        const maxFileSize = parseInt(process.env.MAX_FILE_SIZE) || 500 * 1024 * 1024; // Default to 500MB
+
+        // Create file extension mapping for better frontend handling
+        const fileExtensions = {
+            'image/jpeg': ['.jpg', '.jpeg'],
+            'image/png': ['.png'],
+            'application/pdf': ['.pdf'],
+            'text/plain': ['.txt'],
+            'application/msword': ['.doc'],
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+            'application/zip': ['.zip'] // ✅ Added support for ZIP files
+        };
+
+        const acceptAttribute = allowedTypes
+            .flatMap(type => fileExtensions[type] || [])
+            .concat(allowedTypes)
+            .join(',');
+
+        response.status(200).json({
+            allowedTypes: allowedTypes,
+            maxFileSize: maxFileSize,
+            maxFileSizeMB: Math.round(maxFileSize / (1024 * 1024)),
+            acceptAttribute: acceptAttribute,
+            fileExtensions: fileExtensions,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        console.error(error.message);
+        response.status(500).json({ error: error.message });
+    }
+};

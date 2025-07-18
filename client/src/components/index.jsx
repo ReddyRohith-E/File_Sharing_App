@@ -7,3 +7,4 @@ export { default as UploadButton } from './UploadButton/UploadButton.jsx';
 export { default as ProgressBar } from './ProgressBar/ProgressBar.jsx';
 export { default as FileResult } from './FileResult/FileResult.jsx';
 export { default as CopyMessage } from './CopyMessage/CopyMessage.jsx';
+export { default as SupportedFiles } from './SupportedFiles/SupportedFiles.jsx';
